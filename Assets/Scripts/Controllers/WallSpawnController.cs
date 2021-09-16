@@ -68,6 +68,7 @@ public class WallSpawnController : MonoBehaviour
     private void Spawn(GameObject obj, Vector3 pos, Vector3 rot)
     {
         var wall = Instantiate(obj, pos, Quaternion.Euler(rot));
+        //wall.transform.localScale += new Vector3(0, 0, Random.Range(-0.001f, 0.001f));
         wall.transform.SetParent(_parent);
         wall.name = obj.name;
     }
