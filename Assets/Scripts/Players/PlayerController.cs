@@ -2,42 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody _rigidBody;
+    private Rigidbody _rigidbody;
+
+    [SerializeField] private GameObject _camera;
 
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _angularSpeed;
+    [SerializeField] private float _rotateSpeed;
 
-    private void Awake()
+    private float _vertical
     {
-        _rigidBody = GetComponent<Rigidbody>();
+        get { return Input.GetAxis("Vertical") * _moveSpeed; }
+    }
+    private float _horizontal
+    {
+        get { return Input.GetAxis("Horizontal") * _rotateSpeed; }
+    }
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        MoveLogic();
+        RotateLogic();
+    }
 
-        if (horizontal != 0)
+    private void MoveLogic()
+    {
+        if (_vertical != 0)
         {
-            transform.Rotate(transform.up, horizontal * _angularSpeed);
-        }
-
-        if (vertical != 0)
-        {
-            _rigidBody.AddForce(transform.forward * vertical * _moveSpeed);
+            _rigidbody.AddForce(transform.forward * _vertical);
         }
     }
 
-    private void Move()
+    private void RotateLogic()
     {
-
-        _rigidBody.AddForce(transform.forward * Input.GetAxis("Vertical") * _moveSpeed);
-    }
-
-    private void Rotate()
-    {
-        transform.Rotate(transform.up, Input.GetAxis("Horizontal") * _angularSpeed);
+        if (_horizontal != 0)
+        {
+            transform.Rotate(0, _horizontal, 0);
+        }
     }
 }
