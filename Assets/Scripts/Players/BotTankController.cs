@@ -7,7 +7,15 @@ public class BotTankController : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
 
-    [SerializeField] private Transform _target;
+    private float _distanceToTarget 
+    {
+        get { return Vector3.Distance(transform.position, _target.position); }
+    }
+    private Transform _target;
+
+    [SerializeField] private Transform[] _points;
+
+    [SerializeField] private float _viewDistance;
 
     private void Start()
     {
@@ -18,6 +26,14 @@ public class BotTankController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _navMeshAgent.SetDestination(_target.position);
+        MoveTo();
+    }
+
+    private void MoveTo()
+    {
+        if (_distanceToTarget <= _viewDistance)
+        {
+            _navMeshAgent.SetDestination(_target.position);
+        }
     }
 }
