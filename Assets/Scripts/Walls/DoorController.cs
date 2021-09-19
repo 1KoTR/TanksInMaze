@@ -35,9 +35,9 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (!_isEntered && other.tag == "Player")
         {
             _isEntered = true;
         }

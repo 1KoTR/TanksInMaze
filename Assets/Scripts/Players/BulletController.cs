@@ -14,35 +14,11 @@ public class BulletController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
-        _rigidbody.velocity = transform.forward * _moveSpeed * Time.fixedDeltaTime;
-    }
-
-    private void FixedUpdate()
-    {
-        //MoveLogic();
+        MoveLogic();
     }
 
     private void MoveLogic()
     {
-        _rigidbody.AddForce(transform.forward * _moveSpeed * Time.fixedDeltaTime);
+        _rigidbody.velocity = transform.forward * _moveSpeed * Time.fixedDeltaTime;
     }
-
-    private void RotateLogic(Collision collision)
-    {
-        Vector3 newDirection = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-    }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (_bouncesNumber > 0 && collision.gameObject.layer == 3)
-    //    {
-    //        RotateLogic(collision);
-    //        _bouncesNumber--;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 }
