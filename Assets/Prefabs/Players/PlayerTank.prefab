@@ -71,7 +71,8 @@ MonoBehaviour:
   _setBombDistance: 5
   _defaultBullet: {fileID: 49375645859426883, guid: b47d015ea63827b4c830d114061be21d,
     type: 3}
-  _bomb: {fileID: 4448464038229144833, guid: ccaf4977a8049de4086bda6b04088816, type: 3}
+  _PSDeath: {fileID: 6351775623824906973, guid: 7bbf28bf98e800048a16bf2875fa0f69,
+    type: 3}
 --- !u!1 &146643370436965783
 GameObject:
   m_ObjectHideFlags: 0

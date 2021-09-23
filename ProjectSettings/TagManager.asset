@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Waypoint
   - TankSpawnPoint
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Obstacle
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

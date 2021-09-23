@@ -39,6 +39,7 @@ public class PlayerTankController : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private GameObject _defaultBullet;
+    [SerializeField] private GameObject _PSDeath;
 
     private void Awake()
     {
@@ -97,7 +98,7 @@ public class PlayerTankController : MonoBehaviour
     private void Destroy()
     {
         // Запуск анимации смерти.
-        Destroy(transform);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -106,6 +107,10 @@ public class PlayerTankController : MonoBehaviour
         {
             Destroy();
         }
+    }
+    private void OnDestroy()
+    {
+        Spawn(_PSDeath, transform.position, Quaternion.Euler(Vector3.up));
     }
 
     #endregion

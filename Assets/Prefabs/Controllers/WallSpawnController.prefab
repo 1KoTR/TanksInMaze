@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8099861028316367449}
   - component: {fileID: 5980057390749719715}
   m_Layer: 0
-  m_Name: WallSpawnController 1
+  m_Name: WallSpawnController
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc25d5ff87e6fa43aabeb0dd9f269f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wall: {fileID: 0}
-  _door: {fileID: 0}
-  _wallSpawnChance: 0
-  _doorSpawnChance: 0
+  _wall: {fileID: 7465353218885151047, guid: 7ee9fc04c3bdcaf498c00cdbc3e6ff15, type: 3}
+  _door: {fileID: 7465353218885151047, guid: 2ec1c4676d656834781bc84e9212df2e, type: 3}
+  _wallSpawnChance: 30
+  _doorSpawnChance: 5
