@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultBullet : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class DefaultRocket : MonoBehaviour
 {
     #region Переменные
 
     [Header("Переменные:")]
     [SerializeField] private float MoveSpeed;
-
-    [SerializeField] private float MaxBouncesCount;
 
     #endregion
 
@@ -35,8 +32,10 @@ public class DefaultBullet : MonoBehaviour
 
     private void Death()
     {
-        var death = transform.Find("Particles").Find("Death").GetComponent<ParticleSystem>();
+        var particles = transform.Find("Particles");
+        var death = particles.Find("Death").GetComponent<ParticleSystem>();
 
+        particles.Find("Flame").GetComponent<ParticleSystem>().Stop();
         transform.Find("Model").gameObject.SetActive(false);
 
         death.Play();
@@ -46,13 +45,8 @@ public class DefaultBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var gameObj = collision.gameObject;
-        var t = gameObj.tag;
-        if (gameObj.layer == 3 && --MaxBouncesCount <= 0 ||
-            t == "Player" || t == "Bullet")
-        {
-            Death();
-        }
+        Death();
+        Destroy(collision.gameObject);
     }
 
     #endregion
